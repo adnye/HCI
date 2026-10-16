@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eCo&Go - Prijava</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .login-card {
+      background-color: #f7f9f5;
+      border: 1px solid #e0e6dc;
+      border-radius: 8px;
+      padding: 40px 30px;
+      width: 360px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    .logo-container {
+      margin-bottom: 25px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .logo-icon {
+      width: 28px;
+      height: 28px;
+      fill: #2e7d32;
+    }
+
+    .logo-text {
+      font-size: 28px;
+      font-weight: bold;
+      color: #2e7d32;
+    }
+
+    .tagline {
+      font-size: 13px;
+      color: #666;
+      margin-top: 6px;
+    }
+
+    .form-group {
+      text-align: left;
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      color: #444;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #a2d2a4;
+      border-radius: 4px;
+      font-size: 14px;
+      outline: none;
+      background-color: #ffffff;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      border-color: #2e7d32;
+    }
+
+    /* Stil za grešku */
+    .input-error {
+      border-color: #d32f2f !important;
+      background-color: #fdeded !important;
+    }
+
+    .error-banner {
+      display: none;
+      background-color: #fdeded;
+      color: #5f2120;
+      border: 1px solid #f5c2c7;
+      padding: 10px;
+      border-radius: 4px;
+      font-size: 13px;
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 12px;
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .btn-submit:hover {
+      background-color: #256628;
+    }
+
+    .footer-text {
+      margin-top: 25px;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .footer-text a {
+      color: #2e7d32;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer-text a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-card">
+    <div class="logo-container">
+      <div class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24">
+          <path d="M17,8C8,10 59,16.17 3.82,21.34L5.71,22C8,18 13,15 21,15C21,11 19,9 17,8M6,3C4,5 3,8 3,11C6,11 9,10 11,8C9,5 7,3 6,3Z"/>
+        </svg>
+        <span class="logo-text">eCo&Go</span>
+      </div>
+      <div class="tagline">Prirodno. Odgovorno. Održivo.</div>
+    </div>
+
+    <!-- Poruka o grešci -->
+    <div id="errorMessage" class="error-banner">
+      Pogrešna email adresa ili lozinka. Molimo pokušajte ponovo.
+    </div>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">Email adresa</label>
+        <input type="text" id="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Lozinka</label>
+        <input type="password" id="password" required>
+      </div>
+
+      <button type="submit" class="btn-submit">Prijavi se</button>
+    </form>
+
+    <div class="footer-text">
+      Nemate račun? <a href="#">Registrujte se</a>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // Sprečava stvarno slanje forme
+
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const errorMessage = document.getElementById('errorMessage');
+
+      // Simulacija neispravnih podataka (npr. prihvata samo test@eco.ba / 123456)
+      if (emailInput.value !== "test@eco.ba" || passwordInput.value !== "123456") {
+        // Prikazuje poruku o grešci i crveni okvira
+        errorMessage.style.display = 'block';
+        emailInput.classList.add('input-error');
+        passwordInput.classList.add('input-error');
+      } else {
+        // U slučaju tačnog unosa
+        errorMessage.style.display = 'none';
+        emailInput.classList.remove('input-error');
+        passwordInput.classList.remove('input-error');
+        alert("Uspješna prijava!");
+      }
+    });
+  </script>
+
+</body>
+</html>
